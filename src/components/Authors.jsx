@@ -1,3 +1,5 @@
+import BirthForm from "./BirthForm"
+
 const Authors = (props) => {
   
   
@@ -32,6 +34,7 @@ const Authors = (props) => {
           ))}
         </tbody>
       </table>
+      <BirthForm authors={authors} />
     </div>
   )
 }
