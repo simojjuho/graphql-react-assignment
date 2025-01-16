@@ -10,7 +10,6 @@ const BirthForm = ({ authors }) => {
     refetchQueries: [{ query: ALL_AUTHORS }],
     onError: (error) => {
       const errorMessages = error.graphQLErrors.map(e => e.message).join(', ')
-      console.log(errorMessages)
     }
   } )
 
