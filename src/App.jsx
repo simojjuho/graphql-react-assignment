@@ -36,9 +36,9 @@ const App = () => {
 
       <Books show={page === "books"} result={bookResult} />
 
-      <NewBook show={page === "add"} />
+      <NewBook show={page === "add"} setError={setError} />
 
-      <LoginForm show={page === "login"} setToken={setToken} setError={setError} />
+      <LoginForm show={page === "login"} setPage={setPage} setToken={setToken} setError={setError} />
     </div>
   );
 };

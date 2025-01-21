@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client"
 import LOGIN from "../graphql/login"
 import { useEffect, useState } from "react"
 
-const LoginForm = ({show, setError, setToken}) => {
+const LoginForm = ({show, setPage, setError, setToken}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -17,6 +17,7 @@ const LoginForm = ({show, setError, setToken}) => {
       const token = result.data.login.value
       setToken(token)
       localStorage.setItem('library-login-token', token)
+      setPage('authors')
     }
   }, [result.data])
 
