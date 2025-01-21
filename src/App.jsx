@@ -6,6 +6,7 @@ import Authors from "./components/Authors";
 import Books from "./components/Books";
 import NewBook from "./components/NewBook";
 import LoginForm from "./components/LoginForm";
+import Error from "./components/Error";
 
 const App = () => {
   const [page, setPage] = useState("authors")
@@ -21,6 +22,7 @@ const App = () => {
 
   return (
     <div>
+      <Error errorMsg={error} setError={setError}/>
       <div>
         <button onClick={() => setPage("authors")}>authors</button>
         <button onClick={() => setPage("books")}>books</button>
