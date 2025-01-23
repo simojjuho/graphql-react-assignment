@@ -1,10 +1,7 @@
-const GenreButtons = ({setGenre, genres}) => {
-  const handleSelectGenre = (genre) => {
-    setGenre(genre)
-  }
+const GenreButtons = ({handleSelectGenre, genres}) => {
   return(
     <div>
-       {genres.map(g => <button onClick={handleSelectGenre(g)} key={g}>{g}</button> )}
+       {genres.map(g => <button onClick={() => handleSelectGenre(g)} key={g}>{g}</button> )}
     </div>
   )
 }
