@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react"
-import { useQuery } from "@apollo/client"
 import GenreButtons from "./GenreButtons"
-import ALL_BOOKS from "../graphql/allBooks"
 
 const Books = (props) => {
-  const [chosenGenre, setGenre] = useState('all')
   const [genres, setGenres] = useState(['all'])
   const [books, setBooks] = useState([])
-  const booksByGenre = useQuery(ALL_BOOKS, {
-    variables: { genre: chosenGenre === 'all' ? null : chosenGenre }
-  })
+  const booksByGenre = props.booksByGenre
+  useEffect(() => {
+    props.setGenre('all')
+  }, [props.show])
   useEffect(() => {
     if(props.result.data){
       setBooks(props.result.data.allBooks)
     }
-  }, [props.result.loading])
+  }, [props.result.loading, props.show])
 
   useEffect(() => {
     setGenres(books.reduce((acc, current) => {
@@ -24,10 +22,10 @@ const Books = (props) => {
       })
     return temp
     }, ['all']))
-  }, [books])
+  }, [books, props.show])
 
   const handleSelectGenre = (genre) => {
-    setGenre(genre)
+    props.setGenre(genre)
   }
   
   if (!props.show) {
