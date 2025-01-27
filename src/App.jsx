@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "@apollo/client"
+import { useQuery, useApolloClient, useSubscription } from "@apollo/client"
+import BOOK_ADDED from "./graphql/bookAdded";
 import ALL_AUTHORS from "./graphql/allAuthors"
 import ALL_BOOKS from "./graphql/allBooks"
 import Authors from "./components/Authors";
@@ -20,6 +21,13 @@ const App = () => {
   const userResult = useQuery(ME)
   const booksByGenre = useQuery(ALL_BOOKS, {
     variables: { genre: chosenGenre === 'all' ? null : chosenGenre }
+  })
+
+  useSubscription(BOOK_ADDED, {
+    onData: ({ client, data }) => {
+      window.alert(`Book added: ${data.data.bookAdded.title} by ${data.data.bookAdded.author.name}`)
+      client.refetchQueries({include: [ ALL_AUTHORS, ALL_BOOKS ]})
+    },
   })
 
   const logout = () => {
