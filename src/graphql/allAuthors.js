@@ -6,6 +6,10 @@ const ALL_AUTHORS = gql`
       name
       born
       bookCount
+      books {
+        title
+        published
+      }
     }
   }
 `

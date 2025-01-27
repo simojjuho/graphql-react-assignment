@@ -4,7 +4,7 @@ import EDIT_AUTHOR from "../graphql/editBirth"
 import ALL_AUTHORS from "../graphql/allAuthors"
 
 const BirthForm = ({ authors }) => {
-  const [ name, setName ] = useState(authors[0].name)
+  const [ name, setName ] = useState('')
   const [ birthYear, setBirthYear ] = useState('')
   const [ editAuthor ] = useMutation( EDIT_AUTHOR, {
     refetchQueries: [{ query: ALL_AUTHORS }],

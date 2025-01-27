@@ -5,7 +5,8 @@ const ALL_BOOKS = gql`
     allBooks(author: $author, genre: $genre){
       title
       author {
-        name, born, bookCount
+        name
+        born
       }
       published
       genres
